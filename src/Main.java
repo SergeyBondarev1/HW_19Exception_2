@@ -1,10 +1,10 @@
 public class Main {
     public static void main(String[] args) throws WrongLoginException {
         try {
-            Validator.check("aert", "hgffd", "fdgdghjnbvfrtedcvgt");
+            Validator.check("art", "asd", "asd");
             System.out.println("Логин успешно принят");
-        }catch (WrongLoginException e){
-            throw new RuntimeException(e);
+        } catch (WrongLoginException | WrongPasswordException e){
+            System.out.println(e.getMessage());
         }
     }
 }
