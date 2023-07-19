@@ -4,27 +4,21 @@ public class Validator {
         if (login.length() > 20 || !isValidChars(login)) {
             throw new WrongLoginException("Логин содержит недопустимые символы!");
         }
-        if (password.length() > 20) {
-            throw new WrongPasswordException("Пароль не может содержать больше 20 символов");
-        }
-        if (isValidChars(password)) {
-            throw new WrongPasswordException("Строка содержит недопустимые символы");
+        if (password.length() > 20||!isValidChars(password)) {
+            throw new WrongPasswordException("Пароль содержит недопустимые символы");
         }
         if (!password.equals(confirmPassword)) {
             throw new WrongPasswordException("Пароли не равны");
         }
     }
-
-    public static boolean isValidChars(String str) {
+    private static boolean isValidChars(String str) {
         var lowerCase = str.toLowerCase();
         for (int i = 0; i < lowerCase.length(); i++) {
             var c = lowerCase.charAt(i);
-            for (int j = 0; j < ALLOWED_CHARS.length(); j++) {
-                if (ALLOWED_CHARS.charAt(j) != c) {
+            if (!ALLOWED_CHARS.contains(String.valueOf(c))) {
                     return false;
                 }
             }
-        }
         return true;
     }
 }
